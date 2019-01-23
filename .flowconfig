@@ -1,0 +1,14 @@
+[ignore]
+
+; Ignore flow error from within this module
+.*/node_modules/redux-persist/lib/integration/react.js.flow
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
