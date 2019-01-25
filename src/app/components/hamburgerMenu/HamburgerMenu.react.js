@@ -1,65 +1,27 @@
 // @flow
 
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { ReactHamburger } from 'react-hamburger';
 
-import {
-  Bar,
-  Container,
-  LinkContainer,
-  LinkItem,
-  Logo,
-  LogoContainer,
-  TopBar,
-} from './styles';
+import navRoutes from '../../routes/navRoutes';
 
-import routes from '../../routes/navRoutes';
+export const LinkItem = styled(Link)`
+  color: white;
+  display: block;
+  font-size: 18px;
+  text-transform: capitalize;
+`;
 
-type Props = {};
-
-type State = {
-  open: boolean,
-};
-
-class HamburgerMenu extends React.Component<Props, State> {
-  state = {
-    open: false,
-  }
-
-  toggleLinks = () => {
-    const { open } = this.state;
-    this.setState({ open: !open });
-  };
-
-  renderLinks = routes.map<{}>(route => (
-    <LinkItem
-      key={route.title}
-      onClick={this.toggleLinks}
-      to={route.path}
-    >
-      {route.title}
-    </LinkItem>
-  ))
-
-  render() {
-    const { open } = this.state;
-    return (
-      <React.Fragment>
-        <TopBar>
-          <Container onClick={this.toggleLinks}>
-            <Bar />
-            <Bar />
-            <Bar />
-          </Container>
-          <LogoContainer>
-            <Logo src={null} />
-          </LogoContainer>
-        </TopBar>
-        <LinkContainer open={open}>
-          {this.renderLinks}
-        </LinkContainer>
-      </React.Fragment>
-    );
-  }
-}
+const HamburgerMenu = () => (
+  <ReactHamburger
+    barColor="orange"
+    routes={navRoutes}
+    TopContent={<div>Hello</div>}
+    locked
+    LinkComponent={LinkItem}
+  />
+);
 
 export default HamburgerMenu;
